@@ -105,14 +105,16 @@ def generate_er_diagram(conn, db_type, diagram_format):
                         type_str = type_data.decode()
                     # Replace commas with underscore to avoid syntax errors
                     type_str = type_str.replace(',', '_')
-                    # No PK highlighting for Mermaid
-                    diagram += f"        {type_str} {field}\n"
+                    # Highlight primary key with PK annotation
+                    pk_marker = " PK" if field in primary_keys else ""
+                    diagram += f"        {type_str} {field}{pk_marker}\n"
                 else:  # postgresql
                     column_name, data_type = column[0], column[1]
                     # Clean up type data to avoid syntax issues
                     data_type = str(data_type).replace(',', '_')
-                    # No PK highlighting for Mermaid
-                    diagram += f"        {data_type} {column_name}\n"
+                    # Highlight primary key with PK annotation
+                    pk_marker = " PK" if column_name in primary_keys else ""
+                    diagram += f"        {data_type} {column_name}{pk_marker}\n"
             diagram += "    }\n"
         
         # Add relationships
