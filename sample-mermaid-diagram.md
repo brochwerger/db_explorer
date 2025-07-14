@@ -1,7 +1,7 @@
 ```mermaid
 erDiagram
     customers {
-        int customerNumber
+        int customerNumber PK
         varchar(50) customerName
         varchar(50) contactLastName
         varchar(50) contactFirstName
@@ -16,7 +16,7 @@ erDiagram
         decimal(10_2) creditLimit
     }
     employees {
-        int employeeNumber
+        int employeeNumber PK
         varchar(50) lastName
         varchar(50) firstName
         varchar(10) extension
@@ -26,7 +26,7 @@ erDiagram
         varchar(50) jobTitle
     }
     offices {
-        varchar(10) officeCode
+        varchar(10) officeCode PK
         varchar(50) city
         varchar(50) phone
         varchar(50) addressLine1
@@ -37,14 +37,14 @@ erDiagram
         varchar(10) territory
     }
     orderdetails {
-        int orderNumber
-        varchar(15) productCode
+        int orderNumber PK
+        varchar(15) productCode PK
         int quantityOrdered
         decimal(10_2) priceEach
         smallint orderLineNumber
     }
     orders {
-        int orderNumber
+        int orderNumber PK
         date orderDate
         date requiredDate
         date shippedDate
@@ -53,19 +53,19 @@ erDiagram
         int customerNumber
     }
     payments {
-        int customerNumber
-        varchar(50) checkNumber
+        int customerNumber PK
+        varchar(50) checkNumber PK
         date paymentDate
         decimal(10_2) amount
     }
     productlines {
-        varchar(50) productLine
+        varchar(50) productLine PK
         varchar(4000) textDescription
         mediumtext htmlDescription
         mediumblob image
     }
     products {
-        varchar(15) productCode
+        varchar(15) productCode PK
         varchar(70) productName
         varchar(50) productLine
         varchar(10) productScale
